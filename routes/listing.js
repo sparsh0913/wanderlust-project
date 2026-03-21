@@ -24,7 +24,7 @@ router
 .delete(isLoggedIn,isOwner, wrapAsync(listingController.destroyListing));
 
 //NEW ROUTE-----------------------------------------------------
-router.get("/new" ,isLoggedIn, listingController.renderNewForm);
+/* router.get("/new" ,isLoggedIn, listingController.renderNewForm); */
 
 //UPDATE
 //EDIT ROUTE---------------------------------------

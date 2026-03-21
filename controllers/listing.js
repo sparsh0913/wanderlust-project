@@ -5,7 +5,7 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req,res)=>{
- const allListings =  await Listing.find({});
+ const allListings =  await Listing.find({});  
   res.render("./listings/index.ejs",{allListings});
 }
 
@@ -24,7 +24,7 @@ module.exports.showListing = async(req,res)=>{
             path:"author"
         },
     })
-    .populate("owner"); //becauase we want to shoe reviews on page.
+    .populate("owner"); //becauase we want to show reviews on page.
 
     if(!listing){
         req.flash("error" , "The listing you are trying to access does not exist!");

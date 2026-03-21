@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const methodOverride = require("method-override");
+const methodOverride = require("method-override"); //middleware
 const ejsMate = require("ejs-mate");
 app.engine('ejs', ejsMate);
 const ExpressError = require("./utils/expressError.js");
@@ -97,17 +97,17 @@ async function main(){
 
 app.use("/listings" , listingRouter);
 app.use("/listings/:id/reviews" , reviewRouter);
-app.use("/", userRouter)
+app.use("/", userRouter);
 
 app.use((req,res,next)=>{
-    next(new ExpressError(404,"Page not found!"))
+    next(new ExpressError(404,"Page not found!"));
 })
 
 app.use((err,req,res,next)=>{
     let {statusCode=500 , message="OOPS! Something went wrong!"} = err;
     /* res.status(statusCode).send(message); */
     res.status(statusCode).render("./listings/error.ejs" , {message});
-})
+});
 
 app.listen(8080 , ()=>{
     console.log("server is listening to port 8080");
