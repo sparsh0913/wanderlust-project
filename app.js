@@ -99,6 +99,13 @@ app.get("/", (req, res) => {
     res.redirect("/listings");
 });
 
+app.get("/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Wanderlust project running"
+  });
+});
+
 app.use("/listings" , listingRouter);
 app.use("/listings/:id/reviews" , reviewRouter);
 app.use("/", userRouter);
@@ -113,12 +120,7 @@ app.use((err,req,res,next)=>{
     res.status(statusCode).render("./listings/error.ejs" , {message});
 });
 
-app.get("/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Wanderlust project running"
-  });
-});
+
 
 app.listen(8080 , ()=>{
     console.log("server is listening to port 8080");
